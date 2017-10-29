@@ -16,6 +16,10 @@ from photos.models import Photo
 def random_gallery(request):
 
     gallery = Photo.objects.order_by('?')[:6]
+
+    if gallery.count() == 0:
+        return { 'random_gallery': [] }
+
     p = Paginator(gallery, 1)
 
     # page_range starts at 1
