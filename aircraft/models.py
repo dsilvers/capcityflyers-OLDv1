@@ -13,11 +13,11 @@ class Aircraft(SortableMixin):
     model = models.CharField("Aircraft Model", max_length=40)
     designation = models.CharField("Aircraft Type Designation", max_length=12)
 
-    rate_wet = models.IntegerField("Wet Rate", blank=True)
-    rate_dry = models.IntegerField("Dry Rate", blank=True)
+    rate_wet = models.IntegerField("Wet Rate", blank=True, null=True)
+    rate_dry = models.IntegerField("Dry Rate", blank=True, null=True)
 
-    speed = models.IntegerField("Speed in Knots", blank=True)
-    useful_load = models.IntegerField("Useful Load", blank=True)
+    speed = models.IntegerField("Speed in Knots", blank=True, null=True)
+    useful_load = models.IntegerField("Useful Load", blank=True, null=True)
 
     description = models.TextField("Description", blank=True)
 
