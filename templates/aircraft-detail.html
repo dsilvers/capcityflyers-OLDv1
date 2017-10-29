@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ aircraft.make }} {{ aircraft.model }} {{ aircraft.designation}} {{ aircraft.tailnum }} - Capitol City Flyers{% endblock %}
+
+{% block content %}
+
+<div class="pure-menu pure-menu-horizontal aircraft-menu">
+    <!-- <a href="#" class="pure-menu-heading pure-menu-link">Aircraft</a> -->
+    <ul class="pure-menu-list">
+        {% for aircraft_menu_item in aircraft_menu %}
+            <li class="pure-menu-item {% if aircraft_menu_item == aircraft %}pure-menu-selected{% endif %}"><a href="{% url 'aircraft-detail' aircraft_menu_item.tailnum %}" class="pure-menu-link">{{ aircraft_menu_item.tailnum }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+<div class="pure-g">
+    <div class="pure-u-1 pure-u-md-1 aircraft-detail-header wrapper">
+        <h1>{{ aircraft.tailnum }} - {{ aircraft.make }} {{ aircraft.model }} {{ aircraft.designation}}</h1>
+    </div>
+</div>
+
+
+<div class="pure-g">
+    {% for image in aircraft.gallery.all %}
+    <div class="perfundo perfundo-js pure-u-1-2 pure-u-md-1-6">
+      <a class="perfundo__link" href="#aircraft-image{{ image.id }}">
+        <img class="pure-img" src="{{ image.image_large.url }}" alt="{{ image.description }}">
+      </a>
+      <div id="aircraft-image{{ image.id }}" class="perfundo__overlay fadeIn">
+        <figure class="perfundo__content perfundo__figure">
+          <img src="{{ image.image_large.url }}" alt="{{ image.description }}">
+          <div class="perfundo__image" style="width: 800px; padding-top: 66.25%; background-image: url({{ image.image.url }});"></div>
+        </figure>
+        <a href="#perfundo-untarget" class="perfundo__close perfundo__control">Close</a>
+
+        {% if image.get_next is not None %}
+        <a class="perfundo__next perfundo__control" href="#aircraft-image{{ image.get_next.id }}">Next</a>
+        {% endif %}
+
+        {% if image.get_previous is not None %}
+        <a class="perfundo__prev perfundo__control" href="#aircraft-image{{ image.get_previous.id }}">Prev</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="pure-g">
+    <div class="pure-u-1 pure-u-md-1-2 wrapper">
+        {{ aircraft.description|linebreaks }}
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-3 aircraft-specs-wrapper">
+        <table class="pure-table pure-table-horizontal pure-table-striped first-right">
+            <tbody>
+
+                {% if aircraft.useful_load %}
+                <tr>
+                    <td>Useful Load:</td>
+                    <td>{{ aircraft.useful_load }} lbs</td>
+                </tr>
+                {% endif %}
+
+                {% if aircraft.speed %}
+                <tr>
+                    <td>Speed:</td>
+                    <td>{{ aircraft.speed }} knots</td>
+                </tr>
+                {% endif %}
+
+                {% if aircraft.rate_wet %}
+                <tr>
+                    <td>Wet Rate:</td>
+                    <td>${{ aircraft.rate_wet }} per tach hour</td>
+                </tr>
+                {% endif %}
+
+                {% if aircraft.rate_dry %}
+                <tr>
+                    <td>Dry Rate:</td>
+                    <td>${{ aircraft.rate_dry }} per tach hour</td>
+                </tr>
+                {% endif %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% regroup equipment by category as equipment_list %}
+<div class="pure-g">
+    {% for category in equipment_list %}
+    <div class="pure-u-1 pure-u-md-1-4 pure-u-lg-1-6">
+        <div class="equipment-list">
+            <h2>{{ category.grouper }}</h2>
+            {% for item in category.list %}
+            <div>{{ item.name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="spacer"></div>
+
+{% endblock %}

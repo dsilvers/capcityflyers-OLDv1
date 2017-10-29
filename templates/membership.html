@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load scribbler_tags %}
+
+{% block title %}Membership - Capitol City Flyers{% endblock %}
+
+{% block content %}
+
+<div class="wrapper membership">
+
+    <h1>Capitol City Flyers Membership</h1>
+
+    {% scribble 'membership_intro' %}
+here is a blurb about joining. some kind of FAQ below.
+    {% endscribble %}
+
+{% for section in sections %}
+    <div class="section">{{ section.name }}</div>
+
+    {% for faq in section.faqs.all %}
+    <div class="question-wrapper">
+        <div class="question" id="q{{ faq.id }}">
+            <a href="#q{{ faq.id}}" name="q{{ faq.id }}">{{ faq.question|safe }}</a>
+        </div>
+        <div class="answer">{{ faq.answer|safe }}</div>
+    </div>
+    {% endfor %}
+{% endfor %}
+
+
+
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    var hash = window.location.hash;
+
+    if(hash) {
+        $(hash).parent().addClass("highlight-faq");
+    }
+
+    $('.question a').click(function() {
+        $('.highlight-faq').removeClass("highlight-faq");
+        $(this).parent().parent().addClass("highlight-faq");
+    })
+});
+
+
+
+</script>
+
+{% endblock %}

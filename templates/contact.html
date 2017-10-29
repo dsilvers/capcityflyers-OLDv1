@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% load scribbler_tags %}
+
+{% block title %}Contact Us - Capitol City Flyers{% endblock %}
+
+{% block body-bottom %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=393497947654568';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="wrapper contact-us">
+
+    <div>
+    <h2>Email</h2>
+    {% scribble 'contact_email' %}
+    <a href="mailto:info@capcityflyers.com">info@capcityflyers.com</a>
+    {% endscribble %}
+    </div>
+
+    <div>
+    <h2>Facebook</h2>
+    <div class="fb-page" data-href="https://www.facebook.com/CapitolCityFlyers/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/CapitolCityFlyers/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/CapitolCityFlyers/">Capitol City Flyers, Inc.</a></blockquote></div>
+    </div>
+
+
+    <div>
+    <h2>Phone</h2>
+    {% scribble 'contact_phone' %}
+    <a href="tel:6086986266">(608) 698-6266</a>
+    {% endscribble %}
+    </div>
+
+    <div>
+    <h2>Mail</h2>
+    {% scribble 'contact_mail' %}
+    Capitol City Flyers<br>
+    PO Box 70771<br>
+    Madison, WI 53707-0771<br>
+    {% endscribble %}
+    </div>
+
+    <div>
+    <h2>Visit</h2>
+    {% scribble 'contact_visit' %}
+    <p>Capitol City Flyers aircraft are hangared at the South Ramp of Dane County Regional Airport (MSN). We also operate a clubhouse in the hangar building.</p>
+
+    <p>Our location does not have a proper street address, we are located in the blue common storage hangars at the South Ramp.</p>
+
+    <p>Drive north on Wright St. to the end, turn right onto Mitchell St. to the end, turn left onto Bowman St. to the end, into the parking lot.</p>
+
+    <p>Access is permitted by security badge or escort by a badged member, please arrange a visit.</p>
+    {% endscribble %}
+    </div>
+
+</div>
+
+{% endblock %}

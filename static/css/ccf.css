@@ -1,0 +1,403 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    color: #526066;
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+/*
+ * -- Layout Styles --
+ */
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+}
+
+/*
+ * -- MENU STYLES --
+ * Make the menu have a very faint box-shadow.
+ */
+.pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+
+.pure-menu-link {
+    padding: .5em .7em;
+}
+
+.wrapper {
+    padding: .5em .7em;
+}
+
+
+
+/*
+ * -- BANNER --
+ * The top banner with the headings. By using a combination
+ * of `display: table;` and `display: table-cell;`, we can
+ * vertically center the text.
+ */
+
+.banner {
+    background: transparent url('/static/img/isthmus.jpg') 0 0 no-repeat fixed;
+    text-align: center;
+    /* background-size: cover; */
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/img/isthmus.jpg', sizingMethod='scale');
+
+    height: 200px;
+    width: 100%;
+    margin-bottom: 3em;
+    display: table;
+}
+
+.banner-head {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+    font-size: 2em;
+    color: white;
+    font-weight: 500;
+    
+    color:#fff; 
+    text-shadow:-1px -1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,1px 1px 0 #000;
+
+
+}
+
+
+.aircraft-frontpage-tables,
+.information {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.aircraft-frontpage-tables {
+    margin-bottom: 3.125em;
+    text-align: center;
+}
+
+.aircraft-frontpage-table {
+    border: 1px solid #ddd;
+    margin: 0 0.5em 2em;
+    padding: 0 0 3em;
+}
+
+
+.aircraft-frontpage-table-free .aircraft-frontpage-table-header {
+    background: #519251;
+}
+
+.aircraft-frontpage-table-biz .aircraft-frontpage-table-header {
+    background: #2c4985;
+}
+
+
+.aircraft-frontpage-table-header {
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+}
+.aircraft-frontpage-table-header h2 {
+    margin: 0;
+    padding-top: 2em;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.aircraft-frontpage-table-header div {
+    background: rgba(0,0,0,.45);
+    backdrop-filter: grayscale(1) contrast(3) blur(1px);
+}
+
+
+.aircraft-frontpage-table-price {
+    font-size: 6em;
+    margin: 0.2em 0 0;
+    font-weight: 100;
+}
+.aircraft-frontpage-table-price span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.2em;
+    padding-bottom: 2em;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    *color: #fff;
+}
+
+.aircraft-frontpage-table-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.aircraft-frontpage-table-list li {
+    padding: 0.8em 0;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+
+.aircraft-detail-photo-primary {
+    max-width: 300px;
+    float:right;
+}
+
+
+.section {
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 2em;
+}
+
+.question {
+    font-weight: bold;
+}
+
+.answer {
+    margin-bottom: 1.5em;
+}
+
+
+.header-menu {
+    background: #444444;
+}
+
+.pure-menu-heading {
+    color: #ededed;
+}
+
+.pure-menu-link {
+    color: #dbdbdb;
+}
+
+.pure-menu-link:hover {
+    background: #555555;
+}
+
+.aircraft-menu .pure-menu-link {
+    color: #aeaeae;
+}
+
+.aircraft-menu .pure-menu-link:hover {
+    background: #e8f1ff;
+}
+
+.button-choose {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 2em;
+    font-weight: bold;
+    position: relative;
+    bottom: -1.5em;
+}
+
+.information-head {
+    color: black;
+    font-weight: 500;
+}
+
+.footer-gallery {
+    background: #111;
+    padding-top: .4em;
+}
+
+.footer {
+    padding: .9em;
+    background: #111;
+    color: #888;
+    font-size: .8em;
+}
+.footer a {
+    color: #888;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.brag {
+    text-align: right;
+}
+
+.equipment-list {
+    margin: .3em;
+}
+
+.contact-us h2, .equipment-list h2 {
+    font-size: 1.2em;
+    margin-top: 2em;
+    background-color: #e8f1ff;
+    padding: .7em;
+}
+
+.equipment-list div {
+    padding: .3em .2em 0 .2em;
+}
+
+.membership .section {
+    margin-bottom: .4em;
+    background: #e8f1ff;
+    padding: .3em;
+    font-size: 1.7em;
+    text-transform: uppercase;
+}
+
+.membership .question {
+    margin-bottom: .4em;
+}
+
+.membership .question a {
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    color: #0a0a0a;
+}
+
+.membership .question a:hover {
+    border-bottom: 1px dotted #cecece;
+}
+
+.highlight-faq {
+    background-color: #fff7d1;
+}
+
+.aircraft-specs-wrapper {
+    margin: 1em;
+}
+
+.spacer {
+    margin-bottom: 2.5em;
+}
+
+.first-right td {
+    text-align: left;
+}
+
+.first-right td:first-child {
+    text-align: right;
+}​
+
+
+      .custom-wrapper {
+          background-color: #ffd390;
+          margin-bottom: 1em;
+          -webkit-font-smoothing: antialiased;
+          height: 2.1em;
+          overflow: hidden;
+          -webkit-transition: height 0.5s;
+          -moz-transition: height 0.5s;
+          -ms-transition: height 0.5s;
+          transition: height 0.5s;
+      }
+      
+      .custom-wrapper.open {
+          height: 14em;
+      }
+      
+      .custom-menu-3 {
+          text-align: right;
+      }
+      
+      .custom-toggle {
+          width: 34px;
+          height: 34px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: none;
+      }
+      
+      .custom-toggle .bar {
+          background-color: #777;
+          display: block;
+          width: 20px;
+          height: 2px;
+          border-radius: 100px;
+          position: absolute;
+          top: 18px;
+          right: 7px;
+          -webkit-transition: all 0.5s;
+          -moz-transition: all 0.5s;
+          -ms-transition: all 0.5s;
+          transition: all 0.5s;
+      }
+      
+      .custom-toggle .bar:first-child {
+          -webkit-transform: translateY(-6px);
+          -moz-transform: translateY(-6px);
+          -ms-transform: translateY(-6px);
+          transform: translateY(-6px);
+      }
+      
+      .custom-toggle.x .bar {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+      }
+      
+      .custom-toggle.x .bar:first-child {
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+      }
+      
+      @media (max-width: 47.999em) {
+      
+          .custom-menu-3 {
+              text-align: left;
+          }
+      
+          .custom-toggle {
+              display: block;
+          }
+      
+      }
+
+
+
+/*
+ * -- TABLET MEDIA QUERIES --
+ * On tablets, we want to slightly adjust the size of the banner
+ * text and add some vertical space between the various pricing tables
+ */
+@media(min-width: 767px) {
+
+    .banner-head {
+        font-size: 4em;
+    }
+    .aircraft-frontpage-table {
+        margin-bottom: 0;
+    }
+
+}
+
+/*
+ * -- PHONE MEDIA QUERIES --
+ * On phones, we want to reduce the height and font-size of the banner further
+ */
+@media (min-width: 480px) {
+    .banner {
+        height: 300px;
+    }
+    .banner-head {
+        font-size: 3em;
+    }
+}

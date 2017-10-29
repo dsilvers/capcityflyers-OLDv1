@@ -1,0 +1,165 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}Madison's premier equity based flying club.{% endblock %}">
+    <title>{% block title %}Capitol City Flyers - Madison, WI Flying Club{% endblock %}</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="/combo/1.18.13?/css/layouts/pricing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="{% static '/css/ccf.css' %}">
+        <!--<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    {% if user.is_superuser %}
+    <link rel="stylesheet" href="{% static 'scribbler/css/scribbler.css' %}">
+    <script src="{% static 'scribbler/js/scribbler-min.js' %}"></script>
+    {% endif %}
+
+
+    <link rel="stylesheet" href="{% static 'perfundo-3.0.4/dist/perfundo.min.css' %}">
+    <script src="{% static 'perfundo-3.0.4/dist/perfundo.min.js' %}"></script>
+
+      <script>
+      (function (window, document) {
+      var menu = document.getElementById('menu'),
+          WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
+      
+      function toggleHorizontal() {
+          [].forEach.call(
+              document.getElementById('menu').querySelectorAll('.custom-can-transform'),
+              function(el){
+                  el.classList.toggle('pure-menu-horizontal');
+              }
+          );
+      };
+      
+      function toggleMenu() {
+          // set timeout so that the panel has a chance to roll up
+          // before the menu switches states
+          if (menu.classList.contains('open')) {
+              setTimeout(toggleHorizontal, 500);
+          }
+          else {
+              toggleHorizontal();
+          }
+          menu.classList.toggle('open');
+          document.getElementById('toggle').classList.toggle('x');
+      };
+      
+      function closeMenu() {
+          if (menu.classList.contains('open')) {
+              toggleMenu();
+          }
+      }
+
+      $(document).ready(function() { 
+
+           perfundo('.perfundo');
+
+          document.getElementById('toggle').addEventListener('click', function (e) {
+              toggleMenu();
+              e.preventDefault();
+          });
+          
+          window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
+          })(this, this.document);
+      });
+      </script>
+
+</head>
+<body>
+
+
+
+<div class="custom-wrapper pure-g header-menu" id="menu">
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pure-menu">
+            <a href="{% url 'aircraft' %}" class="pure-menu-heading custom-brand">Capitol City Flyers</a>
+            <!-- <a href="#" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a> -->
+        </div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pure-menu pure-menu-horizontal custom-can-transform custom-menu-3">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                    <a href="{% url 'aircraft' %}" class="pure-menu-link">Aircraft</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="{% url 'membership' %}" class="pure-menu-link">Membership</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="{% url 'contact' %}" class="pure-menu-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% block content %}{% endblock %}
+
+
+<div class="pure-g footer-gallery">
+    {% for image in random_gallery %}
+
+    <div class="perfundo perfundo-js pure-u-1-2 pure-u-md-1-6">
+      <a class="perfundo__link" href="#gallery-image{{ image.id }}">
+        <img class="pure-img" src="{{ image.image_large.url }}" alt="{{ image.description }}">
+      </a>
+      <div id="gallery-image{{ image.id }}" class="perfundo__overlay fadeIn">
+        <figure class="perfundo__content perfundo__figure">
+          <img src="{{ image.image_large.url }}" alt="{{ image.description }}">
+          <div class="perfundo__image" style="width: 800px; padding-top: 66.25%; background-image: url({{ image.image.url }});"></div>
+        </figure>
+        <a href="#perfundo-untarget" class="perfundo__close perfundo__control">Close</a>
+
+        {% if image.next_id is not None %}
+        <a class="perfundo__next perfundo__control" href="#gallery-image{{ image.next_id }}">Next</a>
+        {% endif %}
+
+        {% if image.prev_id is not None %}
+        <a class="perfundo__prev perfundo__control" href="#gallery-image{{ image.prev_id }}">Prev</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<div class="footer l-box">
+    <div class="pure-g">
+        <div class="pure-u-1-2 copyright">
+            &copy; Capitol City Flyers
+        </div>
+        <div class="pure-u-1-2 brag">
+            <a href="https://silvers.net">Website Powered by Silvers.Networks</a>
+        </div>
+    </div>
+</div>
+
+{% block body-bottom %}{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ccf
+Group=ccf
+
+WorkingDirectory=/home/ccf/capcityflyers.com
+ExecStart=/home/ccf/.virtualenvs/ccf/bin/gunicorn ccf.wsgi:application -c /home/ccf/capcityflyers.com/ccf/etc/gunicorn.conf.py
+
+[Install]
+WantedBy=multi-user.target
