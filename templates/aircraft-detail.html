@@ -27,7 +27,8 @@
     {% for image in aircraft.gallery.all %}
     <div class="perfundo perfundo-js pure-u-1-2 pure-u-md-1-6">
       <a class="perfundo__link" href="#aircraft-image{{ image.id }}">
-        <img class="pure-img" src="{{ image.image_large.url }}" alt="{{ image.description }}">
+        <img class="pure-img lazy" data-src="{{ image.image_large.url }}" alt="{{ image.description }}">
+        <noscript><img src="{{ image.image_large.url }}" alt="{{ image.description }}"></noscript>
       </a>
       <div id="aircraft-image{{ image.id }}" class="perfundo__overlay fadeIn">
         <figure class="perfundo__content perfundo__figure">

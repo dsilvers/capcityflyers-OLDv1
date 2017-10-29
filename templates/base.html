@@ -35,56 +35,11 @@
     <script src="{% static 'scribbler/js/scribbler-min.js' %}"></script>
     {% endif %}
 
-
     <link rel="stylesheet" href="{% static 'perfundo-3.0.4/dist/perfundo.min.css' %}">
     <script src="{% static 'perfundo-3.0.4/dist/perfundo.min.js' %}"></script>
 
-      <script>
-      (function (window, document) {
-      var menu = document.getElementById('menu'),
-          WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
-      
-      function toggleHorizontal() {
-          [].forEach.call(
-              document.getElementById('menu').querySelectorAll('.custom-can-transform'),
-              function(el){
-                  el.classList.toggle('pure-menu-horizontal');
-              }
-          );
-      };
-      
-      function toggleMenu() {
-          // set timeout so that the panel has a chance to roll up
-          // before the menu switches states
-          if (menu.classList.contains('open')) {
-              setTimeout(toggleHorizontal, 500);
-          }
-          else {
-              toggleHorizontal();
-          }
-          menu.classList.toggle('open');
-          document.getElementById('toggle').classList.toggle('x');
-      };
-      
-      function closeMenu() {
-          if (menu.classList.contains('open')) {
-              toggleMenu();
-          }
-      }
-
-      $(document).ready(function() { 
-
-           perfundo('.perfundo');
-
-          document.getElementById('toggle').addEventListener('click', function (e) {
-              toggleMenu();
-              e.preventDefault();
-          });
-          
-          window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
-          })(this, this.document);
-      });
-      </script>
+    <script src="{% static 'js/lazy-load.js' %}"></script>
+    <script src="{% static 'js/ccf.js' %}"></script>
 
 </head>
 <body>
@@ -124,7 +79,8 @@
 
     <div class="perfundo perfundo-js pure-u-1-2 pure-u-md-1-6">
       <a class="perfundo__link" href="#gallery-image{{ image.id }}">
-        <img class="pure-img" src="{{ image.image_large.url }}" alt="{{ image.description }}">
+        <img class="pure-img lazy" data-src="{{ image.image_large.url }}" alt="{{ image.description }}">
+        <noscript><img class="pure-img" src="{{ image.image_large.url }}" alt="{{ image.description }}"></noscript>
       </a>
       <div id="gallery-image{{ image.id }}" class="perfundo__overlay fadeIn">
         <figure class="perfundo__content perfundo__figure">
