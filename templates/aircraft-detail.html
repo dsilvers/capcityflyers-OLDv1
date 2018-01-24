@@ -4,6 +4,10 @@
 
 {% block title %}{{ aircraft.make }} {{ aircraft.model }} {{ aircraft.designation}} {{ aircraft.tailnum }} - Capitol City Flyers{% endblock %}
 
+{% block canonical %}
+<link rel="canonical" href="https://capcityflyers.com/aircraft/{{ aircraft.tailnum }}">
+{% endblock %}
+
 {% block content %}
 
 <div class="pure-menu pure-menu-horizontal aircraft-menu">
